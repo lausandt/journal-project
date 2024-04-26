@@ -1,0 +1,73 @@
+[tool.poetry]
+name = "ledger-project"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "*"
+uvicorn = "*"
+tortoise-orm = "*"
+asyncpg = "*"
+aerich = "*"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "*"
+pytest = "*"
+ruff = "*"
+pip-audit = "*"
+httpx = "*"
+pytest-cov = "*"
+
+[tool.pytest.ini_options]
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 100
+lint.select = [
+    "A",
+    "ARG",
+    "B",
+    "C",
+    "C4",
+    "E",
+    "ERA",
+    "F",
+    "I",
+    "N",
+    "PLC",
+    "PLE",
+    "PLR",
+    "PLW",
+    "RET",
+    "S",
+    "T10",
+    "UP",
+    "W",
+]
+lint.ignore = ["A003"]
+target-version = "py310"
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**" = ["ARG", "S"]
+
+
+
+[tool.aerich]
+tortoise_orm = "src.core.config.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
