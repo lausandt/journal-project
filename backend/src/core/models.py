@@ -1,6 +1,7 @@
 from enum import Enum
 
 from tortoise.fields import (
+    BooleanField,
     CharEnumField,
     CharField,
     DatetimeField,
@@ -25,6 +26,8 @@ class User(Model):
     name: CharField = CharField(max_length=64)
     email: CharField = CharField(max_length=128, unique=True)
     password: CharField = CharField(max_length=128)
+    active: BooleanField = BooleanField(default=True, null=False)
+    superuser: BooleanField = BooleanField(default=False, null=False)
     creadate: DatetimeField = DatetimeField(auto_now_add=True, null=True)
     modate: DatetimeField = DatetimeField(auto_now=True, null=True)
 

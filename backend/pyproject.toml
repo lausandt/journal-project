@@ -12,6 +12,8 @@ uvicorn = "*"
 tortoise-orm = "*"
 asyncpg = "*"
 aerich = "*"
+loguru = "^0.7.2"
+passlib = {version = "*", extras = ["bcrypt"]}
 
 
 [tool.poetry.group.dev.dependencies]

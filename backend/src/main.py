@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from loguru import logger
 
 from .core.config import lifespan
 
@@ -16,4 +17,5 @@ app.add_middleware(
 
 @app.get('/')
 async def root() -> dict[str, str]:
+    logger.info('root')
     return {'Message': 'George is an async rhino, very lazy indeed!'}

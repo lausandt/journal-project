@@ -1,4 +1,5 @@
 import os
+from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -13,7 +14,9 @@ TORTOISE_ORM = {
 
 
 @asynccontextmanager
-async def lifespan(application: FastAPI):
+async def lifespan(application: FastAPI) -> AsyncIterator:
     await Tortoise.init(TORTOISE_ORM)
-    yield
-    await Tortoise.close_connections()
+    try:
+        yield
+    finally:
+        await Tortoise.close_connections()
